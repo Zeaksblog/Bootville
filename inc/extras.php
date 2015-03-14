@@ -35,52 +35,37 @@ function bootville_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'bootville_body_classes' );
 
-if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
-	/**
-	 * Filters wp_title to print a neat <title> tag based on what is being viewed.
-	 *
-	 * @param string $title Default title text for current view.
-	 * @param string $sep Optional separator.
-	 * @return string The filtered title.
-	 */
-	function bootville_wp_title( $title, $sep ) {
-		if ( is_feed() ) {
-			return $title;
-		}
-
-		global $page, $paged;
-
-		// Add the blog name
-		$title .= get_bloginfo( 'name', 'display' );
-
-		// Add the blog description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-		if ( $site_description && ( is_home() || is_front_page() ) ) {
-			$title .= " $sep $site_description";
-		}
-
-		// Add a page number if necessary:
-		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'bootville' ), max( $paged, $page ) );
-		}
-
+/**
+ * Filters wp_title to print a neat <title> tag based on what is being viewed.
+ *
+ * @param string $title Default title text for current view.
+ * @param string $sep Optional separator.
+ * @return string The filtered title.
+ */
+function bootville_wp_title( $title, $sep ) {
+	if ( is_feed() ) {
 		return $title;
 	}
-	add_filter( 'wp_title', 'bootville_wp_title', 10, 2 );
 
-	/**
-	 * Title shim for sites older than WordPress 4.1.
-	 *
-	 * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-	 * @todo Remove this function when WordPress 4.3 is released.
-	 */
-	function bootville_render_title() {
-		?>
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
-		<?php
+	global $page, $paged;
+
+	// Add the blog name
+	$title .= get_bloginfo( 'name', 'display' );
+
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
+		$title .= " $sep $site_description";
 	}
-	add_action( 'wp_head', 'bootville_render_title' );
-endif;
+
+	// Add a page number if necessary:
+	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
+		$title .= " $sep " . sprintf( __( 'Page %s', 'bootville' ), max( $paged, $page ) );
+	}
+
+	return $title;
+}
+add_filter( 'wp_title', 'bootville_wp_title', 10, 2 );
 
 /**
  * Sets the authordata global when viewing an author archive.
@@ -103,21 +88,39 @@ function bootville_setup_author() {
 }
 add_action( 'wp', 'bootville_setup_author' );
 
+
 /**
- * Custom Read More Button
+ * Custom Manual Read More Button
  */
+ 
 function modify_read_more_link() {
 
-	return '<p><a class="more-link btn btn-primary" href="' . get_permalink() . '">Read More</a></p>';
+	$read_txt = bvwp_option('read_more_text', 'Read More');
+	$btn_block = (bvwp_option('read_more_block') == '1' ? 'btn-block' : '');
+	$btn_size = 'btn-' . bvwp_option('read_more_size');
+	$btn_color = 'btn-' . bvwp_option('read_more_color');
+
+
+	return '<p><a class="more-link btn '. $btn_color .' '. $btn_size .' '. $btn_block .'" href="' . get_permalink() . '">'. $read_txt .'</a></p>';
 }
 add_filter( 'the_content_more_link', 'modify_read_more_link' );
 
-/**
- * Custom Edit Button
- */
-function custom_edit_post_link($output) {
 
- $output = str_replace('class="post-edit-link"', 'class="post-edit-link btn btn-danger btn-xs"', $output);
- return $output;
+
+// Custom Auto excerpt length and read more
+function custom_excerpt_length( $length )       { return 100; }     // change the excerpt length
+function new_excerpt_more( $more )              { 
+
+	$read_txt = bvwp_option('read_more_text', 'Read More');
+	$btn_block = (bvwp_option('read_more_block') == '1' ? 'btn-block' : '');
+	$btn_size = 'btn-' . bvwp_option('read_more_size');
+	$btn_color = 'btn-' . bvwp_option('read_more_color');
+
+return '<p><a class="more-link btn alignright '. $btn_color .' '. $btn_size .' '. $btn_block .'" href="' . get_permalink() . '">'. $read_txt .'</a></p>'; }  // change the "more" text that follows the excerpt
+
+function custom_excerpt() {
+    add_filter( 'excerpt_length', 'custom_excerpt_length' );        // add filter for length
+    add_filter('excerpt_more', 'new_excerpt_more');                 // add filter for "more" text
+    remove_filter('the_excerpt','wpautop');                         // remove auto p wrapping
+    return the_excerpt();                                           // return the_excerpt
 }
-add_filter('edit_post_link', 'custom_edit_post_link');

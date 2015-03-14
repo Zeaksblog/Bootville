@@ -4,12 +4,15 @@
  */
 ?>
 
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
-
+<div class="entry-meta">
+		<?php if (bvwp_option('disable_meta') =='1') { ?>
+		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php bootville_posted_on(); ?>
 
@@ -28,26 +31,50 @@
 		<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
 		<span class="comments-link"><i class="fa fa-comment-o"></i> <?php comments_popup_link( __( 'Leave a comment', 'bootville' ), __( '1 Comment', 'bootville' ), __( '% Comments', 'bootville' ) ); ?></span>
 		<?php endif; ?>
-		</div><!-- .entry-meta -->	
-		
-		
+		</div><!-- .entry-meta -->
+		<?php endif; ?>
+		<?php } ?>
+		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-			<div class="featured-image">
-			<?php the_post_thumbnail('featured-large'); ?>
-			</div>
-			</a>
-		<?php endif; ?>
-		<!-- display manual excerpt if it exists otherwise the content -->
-		<?php if ( has_excerpt() ) {
-			the_excerpt();
-			} else { ?>		
-		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'bootville' ) ); ?>
-			<?php } ?>
+		<!-- show small thumbnail with excerpts -->
+	<?php if ( has_post_thumbnail() && bvwp_option('post_layout') == '0' )  { ?>	 
+	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+	<?php the_post_thumbnail('thumbnail', 'class=alignleft'); ?>
+	</a>
+	 
+	<?php
+	} else {
+	?>
+		<!-- show full width image for full posts -->
+	<?php if ( has_post_thumbnail() && bvwp_option('post_layout') == '1' ) { ?>
+	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+	<?php the_post_thumbnail('large_featured_image', 'class=alignnone'); ?>
+	</a>
+		   
+	<?php
+	}
+	}
+	?>
+
+		<!-- Post layout switch -->
+	<?php if (bvwp_option('post_layout') == '1') { ?>
+	<?php
+		/* translators: %s: Name of current post */
+		the_content( sprintf(
+			__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bootville' ),
+			the_title( '<span class="screen-reader-text">"', '"</span>', false )
+		) );
+	?>
+	<?php
+	} else {
+	?>
+<?php custom_excerpt( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'bootville' ) ); ?>
+	<?php }	?>
+		<!-- end post layout switch -->
+	
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'bootville' ),
@@ -56,7 +83,7 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
+<footer class="entry-footer">
 		<?php edit_post_link( __( 'Edit', 'bootville' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

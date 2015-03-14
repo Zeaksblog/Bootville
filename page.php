@@ -13,8 +13,23 @@
 get_header(); ?>
 
 	<div class="row">
+		<?php 
+// Sidebar Layout variable from Theme Options
+		$sidebarlayout = bvwp_option('sidebar_layout', '.left-sidebar'); ?>
 
-	<div id="primary" class="col-md-8 col-lg-8">
+		<?php
+
+		if (bvwp_option('sidebar_layout') == '2') {
+			?>
+			<div id="primary" class="col-lg-8 col-md-8">
+				<?php
+			} else {
+				?>
+				<div id="primary" class="col-lg-8 col-md-8 col-md-push-4">
+					
+					<?php
+				}
+				?>			
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>

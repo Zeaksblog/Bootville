@@ -1,0 +1,17 @@
+Add options to footer
+Add social icons to header
+Configure social icon css for options
+Reset default font, line height and weight
+Increase font size for custom CSS area
+Add logo options to header
+Check favicon options
+Check all color schemes
+Fix portfolio layout and styles
+Check excerpts small post thumbnail image size
+Check all page templates
+Add bbPress styles and template
+Check missing CSS for portfolio and other areas
+Add back to the top button
+Finish options admin theme info, default text and version.
+Check theme options after first clean install
+Check homepage template for issues

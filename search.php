@@ -7,9 +7,22 @@
 
 get_header(); ?>
 
+<div class="container">
 	<div class="row">
-	
-	<section id="primary" class="content-area col-md-8 col-lg-8">
+<?php 
+// Sidebar Layout variable from Theme Options
+	$sidebarlayout = bvwp_option('sidebar_layout', '.left-sidebar'); ?>
+	<?php
+	if (bvwp_option('sidebar_layout') == '2') {
+		?>
+		<div id="primary" class="col-lg-9 col-md-9">
+			<?php
+		} else {
+			?>
+			<div id="primary" class="col-lg-9 col-md-9 col-md-push-3">				
+				<?php
+			}
+			?>
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
@@ -41,7 +54,7 @@ get_header(); ?>
 		<?php endif; ?>
 
 		</main><!-- #main -->
-	</section><!-- #primary -->
+	</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
