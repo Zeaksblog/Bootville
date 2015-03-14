@@ -15,3 +15,7 @@ Add back to the top button
 Finish options admin theme info, default text and version.
 Check theme options after first clean install
 Check homepage template for issues
+
+Check theme documentation tab and other theme options info tabs for correct URLs
+**Change static menu to menu above or below header
+**Re-order java script and css file loading
