@@ -40,7 +40,8 @@
 
 	<div class="entry-content">
 		<!-- show small thumbnail with excerpts -->
-	<?php if ( has_post_thumbnail() && bvwp_option('post_layout') == '0' )  { ?>	 
+	<?php if ( has_post_thumbnail() && bvwp_option('post_layout') == '0' )  { ?>
+	
 	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 	<?php the_post_thumbnail('thumbnail', 'class=alignleft'); ?>
 	</a>
@@ -50,14 +51,14 @@
 	?>
 		<!-- show full width image for full posts -->
 	<?php if ( has_post_thumbnail() && bvwp_option('post_layout') == '1' ) { ?>
-	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-	<?php the_post_thumbnail('large_featured_image', 'class=alignnone'); ?>
-	</a>
+	
+		<div class="featured-image">
+			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+			<?php the_post_thumbnail('featured-large', 'class=alignnone'); ?>
+			</a>
+		</div>
 		   
-	<?php
-	}
-	}
-	?>
+	<?php }	} ?>
 
 		<!-- Post layout switch -->
 	<?php if (bvwp_option('post_layout') == '1') { ?>

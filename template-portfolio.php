@@ -6,7 +6,6 @@
 
 get_header(); ?>
 
-<div class="container">
 	<div class="row">
 
 	<div id="primary" class="col-md-12 col-lg-12">
@@ -70,9 +69,8 @@ get_header(); ?>
 						<div class="portfolio-item">
 							<a class="thumbnail" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 							<?php the_post_thumbnail(); ?>
+							<div class="portfolio-button btn btn-primary btn-md btn-block"><?php the_title() ;?></div>
 							</a>
-							<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-							<a href="<?php the_permalink(); ?>" class="btn btn-primary">View Project</a>
 
 						</div>
 					</div>

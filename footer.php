@@ -41,26 +41,23 @@
 					</div><!-- .footer-menu-->
 			</div><!-- .row -->	
 		
-		<div class="row">
+		<div class="row"><!-- powered by and credits -->
 			<div class="credits">
-		
-			<div class="col-md-6 col-lg-6 col-lg-push-6">
-			<div class="copyright">
-				<p class="copyright">&copy; <?php _e('Copyright', 'bootville'); ?> <?php echo date('Y'); ?> - <a href="<?php echo home_url(); ?>/" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
-			</div>
-			</div>
-			
-			<div class="col-md-6 col-lg-6 col-lg-pull-6">
-				<div class="site-info">
-
-					<!-- Theme credits -->
-					<a href="<?php echo esc_url( __( 'http://www.themes.zeaks.org/themes/bootville-lite/', 'bootville' ) ); ?>" title="<?php esc_attr_e( 'Bootville Lite', 'bootville' ); ?>"> <?php printf( 'Bootville Lite', 'bootville' ); ?></a>
-					<?php printf( 'Theme ', 'bootville' ); ?> 
-					
-					<!-- WordPress credits -->
-					<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'bootville' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'bootville' ); ?>"><?php printf( __( 'Powered by %s', 'bootville' ), 'WordPress' ); ?></a>
-				</div><!-- .site-info -->	
-			</div>	
+				<div class="col-md-6 col-lg-6 col-lg-push-6">
+					<?php if (bvwp_option('custom_copyright') != '') { ?>
+					<div class="copyright">
+						<?php echo bvwp_option('custom_copyright'); ?>
+					</div>
+					<?php } ?>				
+				</div>
+				
+				<div class="col-md-6 col-lg-6 col-lg-pull-6">
+					<?php if (bvwp_option('custom_power') != '') { ?>
+					<div class="poweredby">
+						<?php echo bvwp_option('custom_power'); ?>
+					</div>
+					<?php } ?>	
+				</div>
 			</div><!-- .credits -->
 		</div><!-- .row -->
 		

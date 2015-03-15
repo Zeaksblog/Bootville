@@ -15,6 +15,9 @@ Add back to the top button
 Finish options admin theme info, default text and version.
 Check theme options after first clean install
 Check homepage template for issues
+Check featured images for proper classes from Lite version
+**Check Read more button for excerpts
+** Check navbar inverse setting
 
 Check theme documentation tab and other theme options info tabs for correct URLs
 **Change static menu to menu above or below header

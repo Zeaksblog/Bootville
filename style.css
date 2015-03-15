@@ -76,9 +76,6 @@ body { background: #eaeaea; }
 	border: 1px solid #dddddd;
 	padding: 10px;
 }
-.navbar {
-    border-radius: 0;
-}
 /*-------------------------------------------------------------
 3.0 Layout
 ---------------------------------------------------------------*/
@@ -668,3 +665,13 @@ use <div class="video-frame">embed code</div>
 /*--------------------------------------------------------------------------
 19.0 Custom CSS and Plugin Styles
 -----------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+Portfolio
+--------------------------------------------------------------*/
+
+.portfolio .thumbnail { margin-bottom: 35px; }
+.portfolio-button.btn-block { border-radius: 0; }
+.portfolio-item a:hover, .portfolio-item a:active, .portfolio-item a:focus { text-decoration: none; }
+.thumbnail img { padding: 0; }
+#filters { padding-bottom: 20px; }

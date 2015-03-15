@@ -354,24 +354,14 @@
                     'title'     => __('Styles', 'bootville'),
                     'fields'    => array(
                          array(   
-                        'type'      => 'select',
-                        'id'        => 'css_style',
-                        'title'     => __('Theme Stylesheet', 'bootville'), 
-                        'subtitle'  => __('Select your themes alternative color scheme.', 'bootville'),
-                        'default'   => 'bootstrap.min.css',
-                        'options'   => $styles,
-                        ),
-						
-                        array( 
-                            'title'     => __( 'Fixed Navbar', 'bootville' ),
-                            'subtitle'  => __( 'Select to enable/disable a fixed navbar.', 'bootville' ),
-                            'id'        => 'disable_fixed_navbar',
-                            'default'   => false,
-                            'on'        => __( 'Enable', 'bootville' ),
-                            'off'       => __( 'Disable', 'bootville' ),
-                            'type'      => 'switch',
-                        ),
-
+							'type'      => 'select',
+							'id'        => 'css_style',
+							'title'     => __('Theme Stylesheet', 'bootville'), 
+							'subtitle'  => __('Select your themes alternative color scheme.', 'bootville'),
+							'default'   => 'bootstrap.min.css',
+							'options'   => $styles,
+							),
+		
                         array( 
                             'title'     => __( 'Inverse Navbar', 'bootville' ),
                             'subtitle'  => __( 'Select to enable/disable an inverse navbar color.', 'bootville' ),

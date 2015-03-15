@@ -59,8 +59,14 @@
 	</header>
 </div> <!--.row-->
 
+
+
+	<?php 
+	//$fixed = (bvwp_option('disable_fixed_navbar') == '1' ? 'navbar-fixed-top' : 'navbar-static-top');
+	$inverse = (bvwp_option('disable_inverse_navbar') == '1' ? 'navbar-inverse' : 'navbar-default');
+	?>
 			<nav role="navigation">
-				<div class="main-menu navbar navbar-default">					
+				<div class="main-menu navbar <?php echo $inverse; ?> ">				
 					<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -68,8 +74,15 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
+
+				<?php $logo = bvwp_option('custom_logo', false, 'url'); ?>
+				<?php if($logo !== '') { ?>
+					<a href="<?php bloginfo( 'url' ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><img src="<?php echo $logo ?>" alt="<?php bloginfo( 'name' ) ?>"></a>
+				<?php } else { ?>
+					<a class="navbar-brand visible-xs-inline-block" href="<?php echo esc_url( home_url() ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><?php bloginfo( 'name' ) ?></a>
+				<?php } ?>						
+
 					<!-- display site title in mobile menu -->
-						<a class="navbar-brand visible-xs-inline-block" href="<?php echo esc_url( home_url() ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><?php bloginfo( 'name' ) ?></a>
 					</div>
 
 					<div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -105,6 +118,6 @@
 					<img src="<?php header_image(); ?>" />
 				</div> <!-- .header-image -->
 
-			<?php } } ?>
+		<?php } } ?>
 
 <div id="content" class="site-content">
