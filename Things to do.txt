@@ -18,6 +18,7 @@ Check homepage template for issues
 Check featured images for proper classes from Lite version
 **Check Read more button for excerpts
 ** Check navbar inverse setting
+Add portfolio button options to theme settings
 
 Check theme documentation tab and other theme options info tabs for correct URLs
 **Change static menu to menu above or below header

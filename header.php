@@ -16,9 +16,19 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
-</head>
 
+	<!-- scroll to top -->
+	<?php if (bvwp_option('back_to_top') == '1') { ?>
+		<script>
+		jQuery(function(){
+		  jQuery.scrollUp();
+		});
+		</script>
+	<?php } ?>
+	
+</head>
 <body <?php body_class(); ?>>
+
 <div class="wrap container" role="document">
 
 <div id="page" class="hfeed site">

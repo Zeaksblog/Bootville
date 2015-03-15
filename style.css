@@ -675,3 +675,28 @@ Portfolio
 .portfolio-item a:hover, .portfolio-item a:active, .portfolio-item a:focus { text-decoration: none; }
 .thumbnail img { padding: 0; }
 #filters { padding-bottom: 20px; }
+
+/*------------------------------------------------------------
+Scroll to top
+------------------------------------------------------------*/
+
+#scrollUp {
+    bottom: 20px;
+    right: 20px;
+    background-color: #555;
+    color: #fff;
+    font-size: 12px;
+    font-family: sans-serif;
+    text-decoration: none;
+    opacity: .9;
+    padding: 10px 20px;
+    -webkit-transition: background 200ms linear;
+    -moz-transition: background 200ms linear;
+    -o-transition: background 200ms linear;
+    transition: background 200ms linear;
+    -webkit-backface-visibility: hidden;
+}
+
+#scrollUp:hover {
+    background-color: #000;
+}
